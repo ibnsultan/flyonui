@@ -33,9 +33,9 @@
                             </div>
                         </li>
                         <li>
-                            <a class="dropdown-item px-3" href="#">
+                            <a class="dropdown-item px-3" href="{{ route('settings.profile.edit') }}">
                                 <span class="icon-[tabler--user] size-5"></span>
-                                My account
+                                Edit profile
                             </a>
                         </li>
                         <li class="dropdown-footer p-2 pt-1">

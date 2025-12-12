@@ -1,76 +1,83 @@
 @extends('layouts.app')
 
 @section('content')
-    <x-common.page-breadcrumb pageTitle="Profile">
-        <x-slot:breadcrumbs>
-            <li>
-                <a href="{{ route('dashboard') }}" class="text-gray-700 hover:text-brand-600 dark:text-gray-400 dark:hover:text-brand-500">Dashboard</a>
-            </li>
-            <li>
-                <span class="text-gray-700 dark:text-gray-400">Profile</span>
-            </li>
-        </x-slot:breadcrumbs>
-    </x-common.page-breadcrumb>
-
-    <x-layouts.settings title="Profile" description="Update your name and email address">
-        @if (session('status'))
-            <div class="mb-6">
-                <x-ui.alert variant="success" :message="session('status')" />
+    <x-layouts.settings>
+        @session('status')
+            <div class="alert alert-soft alert-success flex items-center gap-1 mb-6 border-0" role="alert">
+                <svg class="size-5 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" />
+                </svg>
+                <span>{{ $value }}</span>
             </div>
-        @endif
+        @endsession
 
         <form method="POST" action="{{ route('settings.profile.update') }}" class="space-y-6">
             @csrf
             @method('PUT')
 
-            <!-- Name Input -->
-            <div>
-                <x-forms.input
-                    name="name"
-                    label="Name"
-                    type="text"
-                    :value="$user->name"
-                    required
-                    autofocus
-                />
+            <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+                <!-- Name Input -->
+                <div>
+                    <label class="label-text" for="name">Name</label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        class="input"
+                        placeholder="Enter your name"
+                        value="{{ old('name', $user->name) }}"
+                        required
+                        autofocus
+                    />
+                    @error('name')
+                        <p class="mt-1.5 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <!-- Email Input -->
+                <div>
+                    <label class="label-text" for="email">Email</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        class="input"
+                        placeholder="Enter your email"
+                        value="{{ old('email', $user->email) }}"
+                        required
+                    />
+                    @error('email')
+                        <p class="mt-1.5 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+                    @enderror
+                </div>
             </div>
 
-            <!-- Email Input -->
-            <div>
-                <x-forms.input
-                    name="email"
-                    label="Email"
-                    type="email"
-                    :value="$user->email"
-                    required
-                />
-            </div>
-
-            <!-- Save Button -->
-            <div>
-                <x-ui.button type="submit" variant="primary">
-                    Save
-                </x-ui.button>
+            <!-- Submit Button -->
+            <div class="flex gap-3">
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+                <button type="button" class="btn btn-soft btn-secondary">Cancel</button>
             </div>
         </form>
 
         <!-- Delete Account Section -->
-        <div class="mt-8 border-t border-gray-200 pt-8 dark:border-gray-700">
-            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Delete account</h3>
-            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">Delete your account and all of its resources</p>
-
-            <form method="POST" action="{{ route('settings.profile.destroy') }}" class="mt-4"
-                  onsubmit="return confirm('Are you sure you want to delete your account? This action cannot be undone.');">
-                @csrf
-                @method('DELETE')
-                <x-ui.button
-                    type="submit"
-                    variant="primary"
-                    className="bg-red-600 hover:bg-red-700 dark:bg-red-700 dark:hover:bg-red-800"
-                >
-                    Delete account
-                </x-ui.button>
-            </form>
+        <div class="border-base-content/20 mt-8 border-t pt-8">
+            <h5 class="text-base-content text-lg font-medium">Delete Account</h5>
+            <div class="mt-4">
+                <div class="alert alert-soft alert-warning mb-4 border-0" role="alert">
+                    <h5 class="text-lg font-medium">Are you sure you want to delete your account?</h5>
+                    <p>Once you delete your account, there is no going back. Please be certain.</p>
+                </div>
+                <form method="POST" action="{{ route('settings.profile.destroy') }}"
+                      onsubmit="return confirm('Are you sure you want to delete your account? This action cannot be undone.');">
+                    @csrf
+                    @method('DELETE')
+                    <div class="mb-4 flex items-center gap-2">
+                        <input type="checkbox" class="checkbox checkbox-primary checkbox-sm" id="checkboxPrimary" />
+                        <label class="label-text text-base" for="checkboxPrimary">I confirm my account deactivation</label>
+                    </div>
+                    <button type="submit" class="btn btn-error">Deactivate Account</button>
+                </form>
+            </div>
         </div>
     </x-layouts.settings>
 @endsection
