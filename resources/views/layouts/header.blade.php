@@ -1,4 +1,4 @@
-<div class="bg-base-100 border-base-content/20 lg:ps-75 sticky top-0 z-50 flex border-b">
+<div class="bg-base-100 border-base-content/20 lg:ps-75 sticky top-0 z-50 flex border-b lg:hidden">
     <div class="mx-auto w-full max-w-7xl">
         <nav class="navbar py-2">
             <div class="navbar-start items-center gap-2">
