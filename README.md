@@ -6,7 +6,7 @@ We decided to merge our [LaravelDaily/starter-kit](https://github.com/LaravelDai
 
 As a result, you get full **simple** Laravel Auth (*login, register, forget password, profile*), styled as FlyonUI.
 
-![](https://laraveldaily.com/uploads/2025/12/flyonui-starter-kit-profile.png)
+![](https://i.ibb.co/HD5r3sbz/Screenshot-2026-02-03-212844.png)
 
 ![](https://laraveldaily.com/uploads/2025/12/flyonui-starter-kit-login.png)
 
