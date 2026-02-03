@@ -119,7 +119,7 @@
                         <a href="{{ route('login') }}" class="link link-animated link-primary font-normal">Sign in
                             instead</a>
                     </p>
-                    @if(!config('flyonui.registration_enabled'))
+                    @if(!config('auth.registration_enabled'))
                     <div class="alert alert-warning">
                         <span class="icon-[tabler--alert-circle] size-5"></span>
                         <span>Registration is currently disabled. Please contact the administrator.</span>

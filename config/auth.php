@@ -111,5 +111,17 @@ return [
     */
 
     'password_timeout' => env('AUTH_PASSWORD_TIMEOUT', 10800),
+    
+
+    /*
+    |--------------------------------------------------------------------------
+    | Enable disable registration
+    |--------------------------------------------------------------------------
+    |
+    | This option controls whether user registration is enabled or disabled.
+    |
+    */
+
+    'registration_enabled' => env('REGISTRATION_ENABLED', false),
 
 ];

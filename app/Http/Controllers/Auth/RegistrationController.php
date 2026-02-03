@@ -16,7 +16,7 @@ class RegistrationController extends Controller
 {
     public function create(): View
     {
-        if (!config('flyonui.registration_enabled')) {
+        if (!config('auth.registration_enabled')) {
             abort(403, 'Registration is currently disabled.');
         }
         
@@ -25,7 +25,7 @@ class RegistrationController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-        if (!config('flyonui.registration_enabled')) {
+        if (!config('auth.registration_enabled')) {
             abort(403, 'Registration is currently disabled.');
         }
         
