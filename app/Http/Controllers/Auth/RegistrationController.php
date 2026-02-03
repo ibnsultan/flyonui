@@ -16,11 +16,19 @@ class RegistrationController extends Controller
 {
     public function create(): View
     {
+        if (!config('flyonui.registration_enabled')) {
+            abort(403, 'Registration is currently disabled.');
+        }
+        
         return view('pages.auth.signup');
     }
 
     public function store(Request $request): RedirectResponse
     {
+        if (!config('flyonui.registration_enabled')) {
+            abort(403, 'Registration is currently disabled.');
+        }
+        
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],

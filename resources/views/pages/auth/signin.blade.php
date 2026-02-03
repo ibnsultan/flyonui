@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="auth-background flex h-auto min-h-screen items-center justify-center overflow-x-hidden bg-cover bg-center bg-no-repeat py-10">
-        <div class="relative flex items-center justify-center px-4 sm:px-6 lg:px-8">
+        <div class="relative flex items-center justify-center px-4 sm:px-6 lg:px-8 w-[480px] max-w-full w-[480px] max-w-full">
             <div class="absolute">
                 <svg width="612" height="697" viewBox="0 0 612 697" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -102,11 +102,13 @@
                         </div>
                         <button class="btn btn-lg btn-primary btn-gradient btn-block" type="submit">Sign in</button>
                     </form>
+                    @if(config('flyonui.registration_enabled'))
                     <p class="text-base-content/80 mb-4 text-center">
                         New on our platform?
                         <a href="{{ route('register') }}" class="link link-animated link-primary font-normal">Create an
                             account</a>
                     </p>
+                    @endif
                 </div>
             </div>
         </div>
